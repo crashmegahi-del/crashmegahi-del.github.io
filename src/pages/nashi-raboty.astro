@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Schema from '../components/Schema.astro';
+import { site } from '../data/site';
+import { works } from '../data/works';
+const first = works[0];
+const worksJson = JSON.stringify(works);
+---
+
+<BaseLayout title="Наши работы — Кухни Оренбург" description="Фото наших работ: современные, угловые, прямые кухни на заказ в Оренбурге.">
+  <Schema type="BreadcrumbList" breadcrumbs={[{ name: 'Главная', item: site.url }, { name: 'Наши работы', item: `${site.url}/nashi-raboty` }]} />
+  <section class="section page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ label: 'Главная', href: '/' }, { label: 'Наши работы' }]} />
+      <div class="section__head">
+        <p class="eyebrow">Наши работы</p>
+        <h1>Фотогалерея кухонь</h1>
+        <p>
+          Каждая кухня, которую мы проектируем и собираем, — это результат кропотливой работы нашей команды. Мы учитываем особенности планировки, пожелания заказчика и современные тенденции в дизайне интерьеров. В нашей галерее собраны проекты разных стилей и конфигураций: от компактных линейных гарнитуров до просторных кухонь-гостиных с островными элементами.
+</p>
+        <a class="btn btn--primary" href="/catalog" style="margin-top: 18px">Перейти в каталог</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="max-width:100%;padding-left:0;padding-right:0">
+    <div class="works-carousel" id="works-carousel" data-works={worksJson}>
+      <div class="works-carousel__main">
+          <img class="works-carousel__image" src={first.image} alt={first.title} data-index="0" />
+          <button class="works-carousel__prev" type="button" aria-label="Предыдущая">&lsaquo;</button>
+          <button class="works-carousel__next" type="button" aria-label="Следующая">&rsaquo;</button>
+          <div class="works-carousel__caption">
+            <p>{first.description}</p>
+          </div>
+        </div>
+        <div class="works-carousel__thumbs">
+          {works.map((item, i) => (
+            <button class="works-carousel__thumb{ i === 0 ? ' is-active' : '' }" type="button" data-index={i} aria-label={item.title}>
+              <img src={item.image} alt={item.title} loading="lazy" />
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal" id="modal-works" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="works-modal__full" role="dialog" aria-modal="true" aria-label="Фото работ">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">&times;</button>
+      <button class="works-modal__prev" type="button" aria-label="Предыдущая">&lsaquo;</button>
+      <button class="works-modal__next" type="button" aria-label="Следующая">&rsaquo;</button>
+      <img class="works-modal__full-img" src="" alt="" />
+    </div>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+(function() {
+  var el = document.getElementById('works-carousel');
+  if (!el) return;
+  var works = JSON.parse(el.getAttribute('data-works'));
+  if (!works || !works.length) return;
+
+  var img = el.querySelector('.works-carousel__image');
+  var captionDesc = el.querySelector('.works-carousel__caption p');
+  var thumbs = el.querySelectorAll('.works-carousel__thumb');
+  var prevBtn = el.querySelector('.works-carousel__prev');
+  var nextBtn = el.querySelector('.works-carousel__next');
+  var current = 0;
+  var interval;
+
+  function update(index) {
+    current = index;
+    var item = works[current];
+    img.src = item.image;
+    img.alt = item.title;
+    img.setAttribute('data-index', current);
+    captionDesc.textContent = item.description;
+    thumbs.forEach(function(t, i) {
+      t.classList.toggle('is-active', i === current);
+    });
+  }
+
+  function next() { update((current + 1) % works.length); }
+  function prev() { update((current + works.length - 1) % works.length); }
+
+  function startAuto() { interval = setInterval(next, 8750); }
+  function stopAuto() { clearInterval(interval); }
+
+  startAuto();
+
+  var main = el.querySelector('.works-carousel__main');
+  main.addEventListener('mouseenter', stopAuto);
+  main.addEventListener('mouseleave', startAuto);
+
+  if (prevBtn) prevBtn.addEventListener('click', function(e) { e.stopPropagation(); prev(); });
+  if (nextBtn) nextBtn.addEventListener('click', function(e) { e.stopPropagation(); next(); });
+
+  thumbs.forEach(function(t) {
+    t.addEventListener('click', function() {
+      update(parseInt(t.getAttribute('data-index')));
+    });
+  });
+
+  function updateModalImage() {
+    var modal = document.getElementById('modal-works');
+    if (!modal || !modal.classList.contains('is-open')) return;
+    var modalImg = modal.querySelector('.works-modal__full-img');
+    var item = works[current];
+    if (modalImg) { modalImg.src = item.image; modalImg.alt = item.title; }
+  }
+
+  img.addEventListener('click', function() {
+    var modal = document.getElementById('modal-works');
+    if (!modal) return;
+    updateModalImage();
+    modal.classList.add('is-open');
+    document.body.classList.add('modal-open');
+  });
+
+  var mPrev = document.querySelector('.works-modal__prev');
+  var mNext = document.querySelector('.works-modal__next');
+  if (mPrev) mPrev.addEventListener('click', function(e) { e.stopPropagation(); prev(); updateModalImage(); });
+  if (mNext) mNext.addEventListener('click', function(e) { e.stopPropagation(); next(); updateModalImage(); });
+})();
+</script>

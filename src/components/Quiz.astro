@@ -1,0 +1,206 @@
+---
+import GlobalForm from './GlobalForm.astro';
+---
+
+<div class="quiz-cta" data-quiz>
+  <div class="quiz-cta__content">
+    <h2>Подберём кухню под ваш бюджет</h2>
+    <p>Пройдите короткий опрос — мы подготовим расчёт по вашим ответам.</p>
+  </div>
+
+  <button class="btn btn--primary quiz-cta__button" type="button" data-quiz-open>
+    Подобрать кухню
+  </button>
+
+  <div class="quiz__popup" data-quiz-popup aria-hidden="true">
+    <div class="quiz__popup-overlay" data-quiz-close></div>
+    <div class="quiz__popup-dialog">
+      <button class="quiz__popup-close" data-quiz-close type="button" aria-label="Закрыть">×</button>
+
+      <div class="quiz__stage is-active" data-quiz-stage="quiz">
+        <div class="quiz__header">
+          <h2>Подберите кухню за 5 шагов</h2>
+          <p>Ответьте на 5 вопросов — подберём вариант под ваш бюджет и размеры.</p>
+        </div>
+
+        <div class="quiz__progress">
+          <div class="quiz__progress-bar" data-quiz-progress></div>
+        </div>
+
+        <div class="quiz__steps">
+          <div class="quiz__step is-active" data-step="1">
+            <h3 class="quiz__question">1. Какая кухня вам нужна?</h3>
+            <div class="quiz__options">
+              <button class="quiz__option" data-answer="Угловая кухня">Угловая</button>
+              <button class="quiz__option" data-answer="Прямая кухня">Прямая</button>
+              <button class="quiz__option" data-answer="П-образная кухня">П-образная</button>
+              <button class="quiz__option" data-answer="Компактная кухня">Компактная</button>
+              <button class="quiz__option" data-answer="Узкая кухня">Узкая</button>
+              <button class="quiz__option" data-answer="Квадратная кухня">Квадратная</button>
+            </div>
+          </div>
+
+          <div class="quiz__step" data-step="2">
+            <h3 class="quiz__question">2. Где будет размещаться кухня?</h3>
+            <div class="quiz__options">
+              <button class="quiz__option" data-answer="В частном доме">В частном доме</button>
+              <button class="quiz__option" data-answer="В хрущевке">В хрущевке</button>
+              <button class="quiz__option" data-answer="В кухне-гостиной">В кухне-гостиной</button>
+              <button class="quiz__option" data-answer="В гостиной">В гостиной</button>
+              <button class="quiz__option" data-answer="В маленькой квартире">В маленькой квартире</button>
+            </div>
+          </div>
+
+          <div class="quiz__step" data-step="3">
+            <h3 class="quiz__question">3. Сколько метров должна быть кухня?</h3>
+            <div class="quiz__options">
+              <button class="quiz__option" data-answer="Кухня 1 м">1 м</button>
+              <button class="quiz__option" data-answer="Кухня 2 м">2 м</button>
+              <button class="quiz__option" data-answer="Кухня 3 м">3 м</button>
+              <button class="quiz__option" data-answer="Кухня 4 м">4 м</button>
+              <button class="quiz__option" data-answer="Кухня 5 м">5 м</button>
+              <button class="quiz__option" data-answer="Кухня 6 м">6 м</button>
+            </div>
+          </div>
+
+          <div class="quiz__step" data-step="4">
+            <h3 class="quiz__question">4. Какой материал для корпуса вы хотите?</h3>
+            <div class="quiz__options">
+              <button class="quiz__option" data-answer="Корпус: ЛДСП">ЛДСП</button>
+              <button class="quiz__option" data-answer="Корпус: МДФ">МДФ</button>
+              <button class="quiz__option" data-answer="Корпус: Массив дерева">Массив дерева</button>
+            </div>
+          </div>
+
+          <div class="quiz__step" data-step="5">
+            <h3 class="quiz__question">5. Какой материал для фасадов вы хотите?</h3>
+            <div class="quiz__options">
+              <button class="quiz__option" data-answer="Фасад: ПВХ-плёнка">ПВХ-плёнка</button>
+              <button class="quiz__option" data-answer="Фасад: Эмаль">Эмаль</button>
+              <button class="quiz__option" data-answer="Фасад: Акрил">Акрил</button>
+              <button class="quiz__option" data-answer="Фасад: Шпон">Шпон</button>
+              <button class="quiz__option" data-answer="Фасад: Массив дерева">Массив дерева</button>
+              <button class="quiz__option" data-answer="Фасад: Стекло">Стекло</button>
+              <button class="quiz__option" data-answer="Фасад: Металл">Металл</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz__stage" data-quiz-stage="form" hidden>
+        <GlobalForm
+          title="Оставить заявку"
+          subtitle="Оставьте контакты — мы подготовим расчёт по вашим ответам."
+          formName="Заявка с квиза"
+          submitText="Получить расчёт"
+          messageLabel="Подробнее"
+        />
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const quizzes = document.querySelectorAll('[data-quiz]');
+    if (!quizzes.length) return;
+
+    quizzes.forEach((quiz) => {
+      if (quiz.dataset.quizInitialized === 'true') return;
+      quiz.dataset.quizInitialized = 'true';
+
+      const openButton = quiz.querySelector('[data-quiz-open]');
+      const popup = quiz.querySelector('[data-quiz-popup]');
+      const quizStage = quiz.querySelector('[data-quiz-stage="quiz"]');
+      const formStage = quiz.querySelector('[data-quiz-stage="form"]');
+      const steps = quiz.querySelectorAll('[data-step]');
+      const totalSteps = steps.length;
+      const progressBar = quiz.querySelector('[data-quiz-progress]');
+      const messageField = quiz.querySelector('[data-message-field]');
+      const initialMessage = messageField?.value || '';
+      const answers = [];
+      let currentStep = 0;
+
+      const isOpen = () => popup?.classList.contains('is-open');
+
+      const updateProgress = () => {
+        if (!progressBar) return;
+        progressBar.style.width = `${(currentStep / totalSteps) * 100}%`;
+      };
+
+      const showStep = (index) => {
+        steps.forEach((step, stepIndex) => step.classList.toggle('is-active', stepIndex === index));
+        updateProgress();
+      };
+
+      const resetQuiz = () => {
+        answers.length = 0;
+        currentStep = 0;
+        showStep(0);
+
+        if (quizStage) quizStage.hidden = false;
+        if (formStage) formStage.hidden = true;
+        if (messageField) messageField.value = initialMessage;
+      };
+
+      const openPopup = () => {
+        if (!popup) return;
+
+        popup.classList.add('is-open');
+        popup.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+        resetQuiz();
+      };
+
+      const closePopup = () => {
+        if (!popup) return;
+
+        popup.classList.remove('is-open');
+        popup.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+        resetQuiz();
+      };
+
+      const finishQuiz = () => {
+        const message = `Подбор кухни под бюджет. Ответы квиза:\n${answers
+          .map((answer, index) => `${index + 1}. ${answer}`)
+          .join('\n')}`;
+
+        if (messageField) messageField.value = message;
+        if (quizStage) quizStage.hidden = true;
+        if (formStage) formStage.hidden = false;
+      };
+
+      openButton?.addEventListener('click', openPopup);
+
+      quiz.addEventListener('click', (event) => {
+        if (event.target.closest('[data-quiz-close]')) {
+          closePopup();
+          return;
+        }
+
+        const answerButton = event.target.closest('[data-answer]');
+        if (!answerButton || !isOpen()) return;
+
+        answers.push(answerButton.dataset.answer || '');
+        currentStep += 1;
+
+        if (currentStep < totalSteps) {
+          showStep(currentStep);
+          return;
+        }
+
+        finishQuiz();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && isOpen()) {
+          closePopup();
+        }
+      });
+
+      resetQuiz();
+    });
+  });
+</script>

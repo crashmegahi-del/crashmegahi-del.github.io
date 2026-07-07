@@ -1,0 +1,26 @@
+---
+const {
+  title,
+  description,
+  href,
+  date,
+  meta = '',
+  imageClass = 'blog-card__image--1',
+} = Astro.props;
+---
+
+<article class="blog-card">
+  <div class={`blog-card__image ${imageClass}`}></div>
+
+  <div class="blog-card__body">
+    <p class="blog-card__meta">
+      {date}
+      {meta ? ` · ${meta}` : ''}
+    </p>
+
+    <h2>{title}</h2>
+    <p>{description}</p>
+
+    <a class="btn btn--secondary" href={href}>Читать статью</a>
+  </div>
+</article>

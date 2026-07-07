@@ -1,0 +1,113 @@
+---
+const {
+  title = 'Оставить заявку',
+  subtitle = 'Оставьте заявку — мы свяжемся с вами и предложим подходящий вариант.',
+  productName = '',
+  formName = 'Заявка с сайта',
+  submitText = 'Отправить заявку',
+  messageLabel = 'Сообщение',
+} = Astro.props;
+---
+
+<div class="contact__box">
+  <h3>{title}</h3>
+  {subtitle && <p class="form__subtitle">{subtitle}</p>}
+
+  <form class="form" data-lead-form>
+    <label>
+      Имя
+      <input type="text" name="name" placeholder="Ваше имя" required />
+    </label>
+
+    <label>
+      Телефон
+      <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required />
+    </label>
+
+    <label>
+      {messageLabel}
+      <textarea
+        rows="4"
+        name="message"
+        placeholder={productName ? `Интересует ${productName}` : 'Какую кухню вы ищете?'}
+        data-message-field
+      ></textarea>
+    </label>
+
+    <input type="hidden" name="form_name" value={formName} />
+    <input type="hidden" name="page_url" data-page-url />
+    <input type="hidden" name="referrer" data-referrer />
+    <input type="hidden" name="utm_source" data-utm-source />
+    <input type="hidden" name="utm_medium" data-utm-medium />
+    <input type="hidden" name="utm_campaign" data-utm-campaign />
+    <input type="hidden" name="utm_term" data-utm-term />
+    <input type="hidden" name="utm_content" data-utm-content />
+
+    <button class="btn btn--primary" type="submit">{submitText}</button>
+  </form>
+</div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const forms = document.querySelectorAll('[data-lead-form]');
+    if (!forms.length) return;
+
+    forms.forEach((form) => {
+      if (form.dataset.leadFormInitialized === 'true') return;
+      form.dataset.leadFormInitialized = 'true';
+
+      const url = new URL(window.location.href);
+      const referrer = document.referrer || '';
+
+      const getUTM = (name) => url.searchParams.get(name) || '';
+
+      const pageUrlInput = form.querySelector('[data-page-url]');
+      const referrerInput = form.querySelector('[data-referrer]');
+      const sourceInput = form.querySelector('[data-utm-source]');
+      const mediumInput = form.querySelector('[data-utm-medium]');
+      const campaignInput = form.querySelector('[data-utm-campaign]');
+      const termInput = form.querySelector('[data-utm-term]');
+      const contentInput = form.querySelector('[data-utm-content]');
+
+      if (pageUrlInput) pageUrlInput.value = window.location.href;
+      if (referrerInput) referrerInput.value = referrer;
+      if (sourceInput) sourceInput.value = getUTM('utm_source');
+      if (mediumInput) mediumInput.value = getUTM('utm_medium');
+      if (campaignInput) campaignInput.value = getUTM('utm_campaign');
+      if (termInput) termInput.value = getUTM('utm_term');
+      if (contentInput) contentInput.value = getUTM('utm_content');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        try {
+          const response = await fetch('/api/lead.php', {
+            method: 'POST',
+            body: formData,
+          });
+
+          const result = await response.json();
+
+          if (result.success) {
+            alert('Спасибо! Мы скоро свяжемся с вами.');
+            form.reset();
+
+            if (pageUrlInput) pageUrlInput.value = window.location.href;
+            if (referrerInput) referrerInput.value = document.referrer || '';
+            if (sourceInput) sourceInput.value = getUTM('utm_source');
+            if (mediumInput) mediumInput.value = getUTM('utm_medium');
+            if (campaignInput) campaignInput.value = getUTM('utm_campaign');
+            if (termInput) termInput.value = getUTM('utm_term');
+            if (contentInput) contentInput.value = getUTM('utm_content');
+          } else {
+            alert(result.message || 'Ошибка отправки');
+          }
+        } catch (error) {
+          alert('Ошибка сети. Попробуйте ещё раз.');
+        }
+      });
+    });
+  });
+</script>

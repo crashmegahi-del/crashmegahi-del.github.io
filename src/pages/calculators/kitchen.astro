@@ -1,0 +1,162 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GlobalForm from '../../components/GlobalForm.astro';
+
+const title = 'Калькулятор кухни';
+const description = 'Ориентировочный расчёт стоимости кухни на заказ по размерам и комплектации.';
+---
+
+<BaseLayout title={title} description={description}>
+  <link rel="stylesheet" href="/src/styles/kitchen-calculator.css" slot="head" />
+  <script type="module" src="/src/scripts/kitchen-calculator.js" slot="head"></script>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Хлебные крошки">
+        <a href="/">Главная</a>
+        <span>›</span>
+        <a href="/calculators">Калькуляторы</a>
+        <span>›</span>
+        <span>Калькулятор кухни</span>
+      </nav>
+
+      <p class="eyebrow">Калькулятор</p>
+      <h1>Калькулятор кухни</h1>
+      <p>
+        Задайте размеры помещения и параметры кухни, чтобы получить ориентировочную стоимость с
+        разбивкой по основным статьям.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container kitchen-calculator" data-kitchen-calculator>
+      <div class="kitchen-calculator__grid">
+        <form class="kitchen-calculator__form" data-calculator-form>
+          <div class="kitchen-calculator__group">
+            <h2>Размеры помещения</h2>
+
+            <label>
+              Ширина кухни, м
+              <input type="number" name="width" min="1" max="12" step="0.1" value="3.2" data-field="width" />
+            </label>
+
+            <label>
+              Глубина кухни, м
+              <input type="number" name="depth" min="1" max="8" step="0.1" value="2.4" data-field="depth" />
+            </label>
+          </div>
+
+          <div class="kitchen-calculator__group">
+            <h2>Планировка</h2>
+
+            <label class="kitchen-calculator__option">
+              <input type="radio" name="layout" value="straight" checked data-field="layout" />
+              <span>Прямая кухня</span>
+            </label>
+
+            <label class="kitchen-calculator__option">
+              <input type="radio" name="layout" value="corner" data-field="layout" />
+              <span>Угловая кухня</span>
+            </label>
+
+            <label class="kitchen-calculator__option">
+              <input type="radio" name="layout" value="u_shape" data-field="layout" />
+              <span>П-образная кухня</span>
+            </label>
+          </div>
+
+          <div class="kitchen-calculator__group">
+            <h2>Комплектация</h2>
+
+            <label>
+              Фасады
+              <select name="facade" data-field="facade">
+                <option value="budget">Практичные</option>
+                <option value="standard" selected>Стандартные</option>
+                <option value="premium">Премиальные</option>
+              </select>
+            </label>
+
+            <label>
+              Столешница
+              <select name="countertop" data-field="countertop">
+                <option value="laminate" selected>Ламинированная</option>
+                <option value="compact">Компакт-плита</option>
+                <option value="stone">Кварцевая</option>
+              </select>
+            </label>
+
+            <label>
+              Фурнитура
+              <select name="hardware" data-field="hardware">
+                <option value="basic">Базовая</option>
+                <option value="standard" selected>Удобная</option>
+                <option value="premium">Премиальная</option>
+              </select>
+            </label>
+
+            <label>
+              Техника
+              <select name="appliances" data-field="appliances">
+                <option value="none">Без техники</option>
+                <option value="basic" selected>Базовый комплект</option>
+                <option value="full">Полный комплект</option>
+              </select>
+            </label>
+
+            <label class="kitchen-calculator__option">
+              <input type="checkbox" name="installation" checked data-field="installation" />
+              <span>Доставка и монтаж</span>
+            </label>
+          </div>
+        </form>
+
+        <div class="kitchen-calculator__aside">
+          <aside class="kitchen-calculator__result" aria-live="polite">
+            <p class="eyebrow">Результат</p>
+            <h2 data-result-title>Ориентировочная стоимость кухни</h2>
+
+            <div class="kitchen-calculator__total">
+              <span>от</span>
+              <strong data-result-min>0 ₽</strong>
+              <span>до</span>
+              <strong data-result-max>0 ₽</strong>
+            </div>
+
+            <p class="kitchen-calculator__summary" data-result-summary></p>
+
+            <dl class="kitchen-calculator__breakdown">
+              <div>
+                <dt>База</dt>
+                <dd data-breakdown-base>0 ₽</dd>
+              </div>
+              <div>
+                <dt>Планировка</dt>
+                <dd data-breakdown-layout>0 ₽</dd>
+              </div>
+              <div>
+                <dt>Комплектация</dt>
+                <dd data-breakdown-options>0 ₽</dd>
+              </div>
+              <div>
+                <dt>Монтаж</dt>
+                <dd data-breakdown-installation>0 ₽</dd>
+              </div>
+            </dl>
+
+            <div class="note">
+              <p>
+                Расчёт ориентировочный. Точная цена зависит от размеров, материалов, техники и замера.
+              </p>
+            </div>
+          </aside>
+
+          <div class="kitchen-calculator__form-slot">
+            <GlobalForm title="Оставить заявку" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

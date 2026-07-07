@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { blogFaq } from '../data/faq';
+import Schema from '../components/Schema.astro';
+import { site } from '../data/site';
+
+const title = 'Блог о кухнях на заказ в Оренбурге';
+const description =
+  'Блог о кухнях на заказ: дизайн, планировка, выбор материалов, размеры и практичные советы для квартиры и дома.';
+
+// Получаем все статьи
+const articles = await getCollection('articles');
+
+// Сортируем по дате: новые выше
+const sortedArticles = articles.sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+
+const formatDate = (date) =>
+  date.toLocaleDateString('ru-RU', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+  });
+---
+
+<BaseLayout title={title} description={description}>
+  <Schema
+    type="ItemList"
+    items={sortedArticles.map((a) => ({
+      name: a.data.title,
+      url: `${site.url}/articles/${a.id}`,
+      description: a.data.description,
+      date: a.data.pubDate.toISOString(),
+    }))}
+  />
+  <Schema type="FAQPage" faqQuestions={blogFaq} />
+  <!-- ===== PAGE HERO ===== -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Хлебные крошки">
+        <a href="/">Главная</a>
+        <span>›</span>
+        <span>Блог</span>
+      </nav>
+
+      <p class="eyebrow">Блог</p>
+      <h1>Полезные статьи о выборе и дизайне</h1>
+      <p>
+        В этом разделе публикуем материалы о планировке, стиле, размерах, материалах и удобных решениях
+        для квартиры, дома и кухни-гостиной.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== BLOG POSTS ===== -->
+  <section class="section">
+    <div class="container">
+      {sortedArticles.length > 0 ? (
+        <div class="blog-grid">
+          {sortedArticles.map((article) => {
+            const { title, description, pubDate, image, tags = [] } = article.data;
+
+            return (
+              <article class="blog-card">
+                <div class="blog-card__image" style={image ? `background-image: url('${image}')` : ''}></div>
+                <div class="blog-card__body">
+                  <p class="blog-card__meta">
+                    {formatDate(pubDate)}
+                    {tags.length > 0 ? ` · ${tags[0]}` : ''}
+                  </p>
+                  <h2>{title}</h2>
+                  <p>{description}</p>
+                  <a class="btn btn--secondary" href={`/articles/${article.id}`}>
+                    Читать статью
+                  </a>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      ) : (
+        <p>Статей пока нет.</p>
+      )}
+    </div>
+  </section>
+
+
+
+  <!-- ===== BLOG FAQ ===== -->
+<section class="section section--alt" id="faq">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">FAQ</p>
+      <h2>Частые вопросы о блоге</h2>
+      <p>Здесь ответы на вопросы о темах, статьях и полезных материалах по кухням на заказ.</p>
+    </div>
+
+    <div class="faq">
+      {blogFaq.map((item) => (
+        <details>
+          <summary>{item.question}</summary>
+          <p>{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+</BaseLayout>

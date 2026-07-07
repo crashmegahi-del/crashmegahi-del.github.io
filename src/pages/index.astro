@@ -1,0 +1,671 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { homeFaq } from '../data/faq';
+import { contacts } from '../data/contacts';
+import GlobalForm from '../components/GlobalForm.astro';
+import Quiz from '../components/Quiz.astro';
+import Schema from '../components/Schema.astro';
+import { site } from '../data/site';
+
+const title = 'Кухни на заказ в Оренбурге — купить кухню недорого, каталог, цены';
+const description =
+  'Кухни на заказ в Оренбурге: каталог кухонь, цены, фото, доставка и монтаж. Угловые и прямые кухни, кухонные гарнитуры под размеры и бюджет.';
+
+---
+
+<BaseLayout title={title} description={description} canonical={site.url}>
+  <Schema type="FAQPage" faqQuestions={homeFaq} />
+  <Schema type="BreadcrumbList" breadcrumbs={[{ name: 'Главная', item: site.url }]} />
+  <Schema
+    type="ItemList"
+    items={[
+      { name: 'Угловая кухня в современном стиле', url: `${site.url}/#gallery`, description: 'Тёмный низ, светлый верх, лаконичная геометрия и чистые линии.' },
+      { name: 'Современный интерьер кухни', url: `${site.url}/#gallery`, description: 'Мраморные акценты, встроенная техника и продуманное освещение.' },
+      { name: 'Современный стиль кухни', url: `${site.url}/#gallery`, description: 'Спокойная палитра и минималистичная композиция фасадов.' },
+      { name: 'Интерьер для квартиры', url: `${site.url}/#gallery`, description: 'Практично, визуально легко и удобно в ежедневном использовании.' },
+    ]}
+  />
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__content">
+        <div class="hero__top">
+          <p class="eyebrow">Кухни Оренбург · кухонные гарнитуры на заказ · кухонный салон · бесплатный замер · бесплатный 3D проект</p>
+          <h1>Кухни на заказ в Оренбурге — получи 20% скидку, оставь заявку прямо сейчас</h1>
+          <p class="hero__text">
+            Изготавливаем кухонные гарнитуры под размеры от лучших фабрик России.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#contacts">Получить бесплатный 3D проект</a>
+            <a class="btn btn--secondary" href="/catalog">Открыть каталог</a>
+          </div>
+        </div>
+        <details class="hero__offer offer" id="contacts">
+          <summary>Индивидуальный проект</summary>
+          <div class="hero__offer-body">
+            <h2>Кухонный гарнитур в Оренбурге</h2>
+            <p>
+              Бесплатный 3D-проект с визуализацией вашей будущей кухни. Точный расчёт стоимости
+              после замера — фиксируем цену в договоре. Доставка и монтаж в удобный вам день.
+            </p>
+            <ul class="hero__badges" aria-label="Преимущества">
+              <li>Кухни на заказ по размерам</li>
+              <li>Доставка и монтаж по Оренбургу</li>
+              <li>Кухни недорого и под разные бюджеты</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+
+      <div class="hero__sidebar" >
+        <GlobalForm title="Оставить заявку" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ADVANTAGES ===== -->
+  <section class="section" id="advantages">
+    <div class="container">
+      <div class="section__head">
+        
+        <h2>Почему заказывают кухни у нас</h2>
+        <p>
+          Делаем кухни на заказ на крупных фабриках России самым современным оборудованием, а не в
+          маленьком цеху на коленке. Только качественные кухонные гарнитуры и любая корпусная
+          мебель на любой бюджет. Всегда точно в соответствии с размерами, планировкой помещения,
+          стилем интерьера и желаемого функционала для ежедневного использования.
+        </p>
+      </div>
+
+      <div class="cards cards--4">
+        <article
+          class="card card--clickable open-modal"
+          tabindex="0"
+          role="button"
+          data-modal="modal-adv-1"
+          data-has-media="false"
+          aria-label="Подробнее о бесплатном проекте"
+        >
+          <div class="card__body">
+            <div class="card__head">
+              <svg class="card__icon" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true"><rect x="8" y="6" width="12" height="36" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="14" y1="12" x2="14" y2="36" stroke="currentColor" stroke-width="1.5"/><line x1="10" y1="8" x2="18" y2="8" stroke="currentColor" stroke-width="1.5"/><line x1="10" y1="40" x2="18" y2="40" stroke="currentColor" stroke-width="1.5"/><polygon points="32,10 44,10 44,22 32,22" fill="none" stroke="currentColor" stroke-width="2"/><line x1="24" y1="26" x2="44" y2="26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="28" y1="33" x2="44" y2="33" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="26" y1="40" x2="40" y2="40" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="20,16 22,18 26,12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <h3>Бесплатный проект</h3>
+            </div>
+            <p>
+              Современные материалы и фактура фасадов, фурнитура Blum и геометрия, которая
+              визуально облегчает пространство — гарнитур точно впишется в вашу планировку.
+            </p>
+          </div>
+        </article>
+
+        <article
+          class="card card--clickable open-modal"
+          tabindex="0"
+          role="button"
+          data-modal="modal-adv-2"
+          data-has-media="false"
+          aria-label="Подробнее о разных бюджетах"
+        >
+          <div class="card__body">
+            <div class="card__head">
+              <svg class="card__icon" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true"><circle cx="24" cy="18" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M22 18c0-1.5 2-4 2-4s2 2.5 2 4a2 2 0 0 1-4 0z" fill="currentColor"/><rect x="12" y="30" width="24" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="18" y1="34" x2="30" y2="34" stroke="currentColor" stroke-width="1.5"/></svg>
+              <h3>Разные бюджеты</h3>
+            </div>
+            <p>
+              Помогаем купить кухню недорого или подобрать более статусное решение — с понятной
+              стоимостью кухни и прозрачной комплектацией.
+            </p>
+          </div>
+        </article>
+
+        <article
+          class="card card--clickable open-modal"
+          tabindex="0"
+          role="button"
+          data-modal="modal-adv-3"
+          data-has-media="false"
+          aria-label="Подробнее о доставке и монтаже"
+        >
+          <div class="card__body">
+            <div class="card__head">
+              <svg class="card__icon" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true"><rect x="6" y="14" width="28" height="22" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="6" y1="20" x2="34" y2="20" stroke="currentColor" stroke-width="2"/><circle cx="14" cy="30" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="30" cy="30" r="5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="19" y1="30" x2="25" y2="30" stroke="currentColor" stroke-width="1.5"/></svg>
+              <h3>Доставка и монтаж</h3>
+            </div>
+            <p>
+              Организуем доставку кухни по Оренбургу и установку на объекте, чтобы вы получили
+              готовый результат без лишних хлопот.
+            </p>
+          </div>
+        </article>
+
+        <article
+          class="card card--clickable open-modal"
+          tabindex="0"
+          role="button"
+          data-modal="modal-adv-4"
+          data-has-media="false"
+          aria-label="Подробнее о современном виде"
+        >
+          <div class="card__body">
+            <div class="card__head">
+              <svg class="card__icon" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true"><polygon points="24,4 30,17 44,18 34,28 37,42 24,34 11,42 14,28 4,18 18,17" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+              <h3>Современный вид</h3>
+            </div>
+            <p>
+              Светлые фасады, аккуратная геометрия и современный стиль кухни помогают сделать
+              интерьер визуально легче и современнее.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== QUIZ ===== -->
+  <section class="section section--alt">
+    <div class="container">
+
+      <Quiz />
+    </div>
+  </section>
+
+  <!-- ===== SOLUTIONS ===== -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__head">
+        
+        <h2>Какие кухни мы проектируем</h2>
+        <p>
+          Подбираем угловую кухню, прямую кухню и компактные решения для квартиры, дома и кухни-гостиной.
+        </p>
+      </div>
+
+      <div class="cards cards--3">
+        <article
+          class="card card--clickable open-modal"
+          data-modal="modal-angle"
+          data-has-media="true"
+          tabindex="0"
+          role="button"
+          aria-label="Открыть описание угловой кухни"
+        >
+          <div class="card__image card__image--angle"></div>
+          <div class="card__body">
+            <h3>Угловая кухня</h3>
+            <p>
+              Удобный вариант для рационального хранения, рабочей зоны и размещения техники.
+              Подходит, если важно использовать угол максимально полезно.
+            </p>
+            <a
+              class="btn btn--secondary js-order"
+              href="#contacts"
+              data-order-message="Здравствуйте! Хочу заказать угловую кухню. Нужен расчёт и подбор решения под мою планировку."
+            >Заказать</a>
+          </div>
+        </article>
+
+        <article
+          class="card card--clickable open-modal"
+          data-modal="modal-straight"
+          data-has-media="true"
+          tabindex="0"
+          role="button"
+          aria-label="Открыть описание прямой кухни"
+        >
+          <div class="card__image card__image--straight"></div>
+          <div class="card__body">
+            <h3>Прямая кухня</h3>
+            <p>
+              Лаконичное решение для студии, узкой планировки и квартиры, где важны простота,
+              лёгкость и удобная рабочая линия.
+            </p>
+            <a
+              class="btn btn--secondary js-order"
+              href="#contacts"
+              data-order-message="Здравствуйте! Хочу заказать прямую кухню. Нужен расчёт и подбор решения под мою планировку."
+            >Заказать</a>
+          </div>
+        </article>
+
+        <article
+          class="card card--clickable open-modal"
+          data-modal="modal-small"
+          data-has-media="true"
+          tabindex="0"
+          role="button"
+          aria-label="Открыть описание компактной кухни"
+        >
+          <div class="card__image card__image--small"></div>
+          <div class="card__body">
+            <h3>Компактная кухня</h3>
+            <p>
+              Решение для маленькой кухни и небольших помещений, где каждый сантиметр должен
+              работать на хранение, удобство и внешний вид.
+            </p>
+            <a
+              class="btn btn--secondary js-order"
+              href="#contacts"
+              data-order-message="Здравствуйте! Хочу заказать компактную кухню. Нужен удобный вариант для небольшого помещения."
+            >Заказать</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="cta-banner">
+        <p>Это не все варианты — в каталоге больше решений под разные планировки и размеры.</p>
+        <a class="btn btn--primary" href="/catalog">Перейти в каталог</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section class="section" id="gallery">
+    <div class="container">
+      <div class="section__head">
+        
+        <h2>Фото и интерьерные идеи</h2>
+        <p>
+          Смотрите фото кухонь, дизайн кухни в современном стиле и спокойные решения для квартиры
+          и дома.
+        </p>
+      </div>
+
+      <div class="gallery">
+        <article class="gallery__item">
+          <div class="gallery__ph gallery__ph--1"></div>
+          <h3>Угловая кухня в современном стиле</h3>
+          <p>Тёмный низ, светлый верх, лаконичная геометрия и чистые линии.</p>
+        </article>
+
+        <article class="gallery__item">
+          <div class="gallery__ph gallery__ph--2"></div>
+          <h3>Современный интерьер кухни</h3>
+          <p>Мраморные акценты, встроенная техника и продуманное освещение.</p>
+        </article>
+
+        <article class="gallery__item">
+          <div class="gallery__ph gallery__ph--3"></div>
+          <h3>Современный стиль кухни</h3>
+          <p>Спокойная палитра и минималистичная композиция фасадов.</p>
+        </article>
+
+        <article class="gallery__item">
+          <div class="gallery__ph gallery__ph--4"></div>
+          <h3>Интерьер для квартиры</h3>
+          <p>Практично, визуально легко и удобно в ежедневном использовании.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICES ===== -->
+  <section class="section section--alt" id="prices">
+    <div class="container">
+      <div class="section__head">
+       
+        <h2>Сколько стоит кухня на заказ</h2>
+        <p>
+          Цена кухни зависит от размеров, материалов, фасадов, фурнитуры и комплектации. Подберём
+          вариант под бюджет, стиль и задачи помещения.
+        </p>
+      </div>
+
+      <div class="pricing">
+        <article class="price">
+          <h3>Бюджет</h3>
+          <p class="price__value">от 45 000 ₽</p>
+          <ul>
+            <li>простые практичные решения</li>
+            <li>лаконичная комплектация</li>
+            <li>современный стильный вид</li>
+          </ul>
+        </article>
+
+        <article class="price price--featured">
+          <h3>Стандарт</h3>
+          <p class="price__value">от 75 000 ₽</p>
+          <ul>
+            <li>стандартная комплектация</li>
+            <li>оптимальные материалы</li>
+            <li>удобная фурнитура</li>
+          </ul>
+        </article>
+
+        <article class="price">
+          <h3>Фурнитура Blum</h3>
+          <p class="price__value">от 110 000 ₽</p>
+          <ul>
+            <li>всегда качественная фурнитура Blum</li>
+            <li>современные материалы</li>
+            <li>выбор различной фактуры фасадов</li>
+            <li>дополнительный функционал</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="price-note">
+        <p>
+          Подготовим несколько вариантов с фото, ценами и пояснениями — удобно, когда вы выбираете
+          кухню недорого или хотите более точное решение под конкретные размеры.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+  <!-- ===== STEPS ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="section__head">
+        
+        <h2>Как проходит работа</h2>
+      </div>
+
+      <ol class="steps">
+        <li>
+          <div class="step__row">
+            <svg class="step__icon" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><rect x="8" y="6" width="32" height="36" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><line x1="14" y1="14" x2="34" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="22" x2="28" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="30" x2="24" y2="30" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <div>
+              Оставляйте заявку и отправляйте размеры кухни (если есть).
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="step__row">
+            <svg class="step__icon" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><circle cx="14" cy="20" r="8" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="32" cy="20" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M19 22c2 4 8 4 10 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="23" y1="30" x2="23" y2="38" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="31" y1="30" x2="31" y2="38" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <div>
+              Встреча в офисе и бесплатный 3D-проект, рассчитываем стоимость.
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="step__row">
+            <svg class="step__icon" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><rect x="10" y="4" width="28" height="36" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="14,16 22,16 26,22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="14" y1="26" x2="34" y2="26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="32" x2="30" y2="32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="22" cy="16" r="1.5" fill="currentColor"/></svg>
+            <div>
+              Замер, согласование цены, подписание договора.
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="step__row">
+            <svg class="step__icon" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><rect x="6" y="16" width="36" height="28" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="24" y1="16" x2="24" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="6" r="3" fill="none" stroke="currentColor" stroke-width="2"/><line x1="16" y1="28" x2="32" y2="28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="14,34 18,38 26,30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div>
+              Изготавливаем, доставляем, монтируем.
+            </div>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+
+
+  <!-- ===== CONTACTS ===== -->
+  <section class="section contact">
+    <div class="container contact__centered">
+
+        <h2>Кухни Оренбург: адрес и консультация</h2>
+        <p>
+          Уточните адрес, получите расчёт и подберите кухню на заказ под ваш проект, бюджет и
+          размеры.
+        </p>
+
+        <div class="contact__list">
+          <p><strong>Время работы:</strong> {contacts.workTime}</p>
+        </div>
+
+        <div class="contact__cards">
+          {contacts.locations.map((loc) => (
+            <div class="contact__card">
+              <div class="contact__card-info">
+                <div class="contact__card-top">
+                  <span class="contact__card-name">{loc.name}</span>
+                  <a href={loc.phoneLink} class="contact__card-phone">{loc.phone}</a>
+                </div>
+                <div class="contact__card-address">{loc.cardAddress}</div>
+              </div>
+              <div class="contact__map" aria-label={loc.label}>
+{loc.mapUrl ? (
+                  <iframe
+                    src={loc.mapUrl}
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title={loc.label}
+                  />
+                ) : (
+                  <div class="contact__map-placeholder">Карта</div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section section--alt" id="faq">
+    <div class="container">
+      <div class="section__head">
+        
+        <h2>Частые вопросы</h2>
+        <p>
+          Ответы на популярные вопросы о кухнях на заказ, стоимости, сроках и подборе решения под
+          размер.
+        </p>
+      </div>
+
+      <div class="faq">
+        {homeFaq.map((item) => (
+          <details>
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MODALS: карточки без фото ===== -->
+  <div class="modal" id="modal-adv-1" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Бесплатный проект">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="false">
+        <div class="modal__content">
+          <p class="eyebrow">Бесплатный проект</p>
+          <h3>Чтобы гарнитур был удобным и современным</h3>
+          <div class="modal__scroll">
+            <p>
+              Чтобы гарнитур или шкафы были удобными и подходили под конкретную планировку,
+              используем современные материалы и фактуру фасадов (фрезеровка), цветные или
+              светлые фасады, минимализм без визуального шума.
+            </p>
+            <p>
+              Фурнитура Blum, геометрия, визуально вытягивающая пространство, и современный стиль
+              кухни делают интерьер визуально легче и современнее.
+            </p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Рассчитать стоимость кухни</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-adv-2" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Разные бюджеты">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="false">
+        <div class="modal__content">
+          <p class="eyebrow">Разные бюджеты</p>
+          <h3>Подбираем решение под задачу и бюджет</h3>
+          <div class="modal__scroll">
+            <p>
+              Можно сделать спокойный базовый вариант, практичную среднюю комплектацию или более
+              выразительное решение с акцентом на материалы.
+            </p>
+            <p>
+              Мы показываем несколько сценариев, чтобы вы могли сравнить стоимость кухни и понять,
+              какой вариант подходит именно вам.
+            </p>
+            <p>
+              Для небольших помещений часто выбирают более компактные модули и лаконичные фасады.
+              Для просторных — расширенные системы хранения и более заметную отделку.
+            </p>
+            <p>Такой подход помогает сохранить баланс между ценой, удобством и внешним видом.</p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-adv-3" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Доставка и монтаж">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="false">
+        <div class="modal__content">
+          <p class="eyebrow">Доставка и монтаж</p>
+          <h3>Аккуратно привозим и собираем на объекте</h3>
+          <div class="modal__scroll">
+            <p>
+              Доставка по Оренбургу позволяет быстро получить готовый комплект на объекте. Монтаж
+              выполняется по согласованному плану.
+            </p>
+            <p>
+              Сборка включает установку модулей, выравнивание, подключение базовых элементов и
+              проверку удобства использования.
+            </p>
+            <p>
+              Для клиента это удобно: не нужно отдельно искать доставку и подрядчиков на установку.
+            </p>
+            <p>При необходимости можно заранее обсудить адрес, сроки и доступ к помещению.</p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-adv-4" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Современный вид">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="false">
+        <div class="modal__content">
+          <p class="eyebrow">Современный вид</p>
+          <h3>Светлая эстетика и спокойные материалы</h3>
+          <div class="modal__scroll">
+            <p>
+              Современный стиль хорошо смотрится в светлой палитре, с мягкими фактурами и
+              лаконичной геометрией.
+            </p>
+            <p>
+              Мы подбираем фасады, фартук, свет и фурнитуру так, чтобы интерьер выглядел дороже и
+              визуально легче.
+            </p>
+            <p>Такое решение подходит для квартиры, дома и объединённых пространств.</p>
+            <p>
+              При необходимости можно добавить более тёплые оттенки, акцентные ручки и натуральные
+              текстуры.
+            </p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODALS: карточки с фото ===== -->
+  <div class="modal" id="modal-angle" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Угловая кухня">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="true">
+        <div class="modal__media modal__media--angle"></div>
+        <div class="modal__content">
+          <p class="eyebrow">Угловая кухня</p>
+          <h3>Удобный формат для рационального хранения</h3>
+          <div class="modal__scroll">
+            <p>
+              Угловая планировка помогает компактно разместить рабочие зоны и сделать интерьер
+              более функциональным.
+            </p>
+            <p>
+              Такой формат часто выбирают для квартиры, дома и кухни-гостиной, когда важно
+              использовать угол максимально полезно.
+            </p>
+            <p>
+              Подходит тем, кто хочет получить удобный кухонный гарнитур и аккуратный современный
+              вид.
+            </p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-straight" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Прямая кухня">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="true">
+        <div class="modal__media modal__media--straight"></div>
+        <div class="modal__content">
+          <p class="eyebrow">Прямая кухня</p>
+          <h3>Лаконичное решение для студии и вытянутой планировки</h3>
+          <div class="modal__scroll">
+            <p>
+              Прямая схема подходит для узких помещений и интерьеров, где важно сохранить воздух
+              и простоту.
+            </p>
+            <p>
+              Это хороший вариант, если нужен аккуратный, визуально лёгкий проект и удобная
+              рабочая линия.
+            </p>
+            <p>
+              Можно включить встроенную технику, компактное хранение и спокойную отделку фасадов.
+            </p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-small" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Компактная кухня">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="true">
+        <div class="modal__media modal__media--small"></div>
+        <div class="modal__content">
+          <p class="eyebrow">Компактная кухня</p>
+          <h3>Если помещение небольшое, важен каждый сантиметр</h3>
+          <div class="modal__scroll">
+            <p>
+              Для маленькой площади мы подбираем продуманные шкафы, удобную глубину, компактную
+              технику и функциональное хранение.
+            </p>
+            <p>
+              Это помогает сделать пространство удобным, чистым визуально и более организованным
+              в повседневной жизни.
+            </p>
+            <p>
+              Подобные решения часто ищут по запросам про кухонный гарнитур для маленькой кухни,
+              кухни на заказ недорого и кухня 1 м, кухня 2 м.
+            </p>
+            <p>Такой формат легко адаптировать под конкретные размеры и бюджет.</p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

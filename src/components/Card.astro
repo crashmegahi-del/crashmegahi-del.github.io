@@ -1,0 +1,29 @@
+---
+const {
+  title,
+  description,
+  modalId,
+  hasMedia = false,
+  imageClass = '',
+  orderHref = '#contacts',
+  ariaLabel = '',
+  buttonText = 'Заказать',
+} = Astro.props;
+---
+
+<article
+  class="card card--clickable open-modal"
+  tabindex="0"
+  role="button"
+  data-modal={modalId}
+  data-has-media={hasMedia ? 'true' : 'false'}
+  aria-label={ariaLabel || title}
+>
+  {hasMedia && <div class={`card__image ${imageClass}`}></div>}
+
+  <div class="card__body">
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <a class="btn btn--secondary js-order" href={orderHref}>{buttonText}</a>
+  </div>
+</article>

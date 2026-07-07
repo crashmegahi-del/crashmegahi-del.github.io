@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Страница не найдена — 404';
+const description = 'Запрашиваемая страница не найдена. Вернитесь на главную или откройте каталог и блог.';
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- ===== 404 PAGE ===== -->
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">404</p>
+      <h1>Страница не найдена</h1>
+      <p>
+        Похоже, адрес был введён неверно или страница была перемещена.  
+        Вы можете вернуться на главную, открыть каталог или перейти в блог.
+      </p>
+
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="/">На главную</a>
+        <a class="btn btn--secondary" href="/catalog">В каталог</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

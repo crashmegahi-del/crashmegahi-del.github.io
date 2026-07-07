@@ -1,0 +1,1300 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { catalogFaq } from '../data/faq';
+import { contacts } from '../data/contacts';
+import GlobalForm from '../components/GlobalForm.astro';
+import Schema from '../components/Schema.astro';
+import { site } from '../data/site';
+
+const title = 'Каталог кухонь и планировок — угловые, прямые, компактные решения';
+const description =
+  'Каталог кухонь: угловые и прямые решения, кухни для маленькой квартиры, хрущевки, частного дома, кухни-гостиные и варианты по размерам 1–6 м.';
+
+---
+
+<BaseLayout title={title} description={description}>
+  <Schema type="FAQPage" faqQuestions={catalogFaq} />
+  <Schema type="BreadcrumbList" breadcrumbs={[{ name: 'Главная', item: site.url }, { name: 'Каталог', item: `${site.url}/catalog` }]} />
+  <Schema
+    type="ItemList"
+    items={[
+      { name: 'Угловая кухня', url: `${site.url}/catalog#categories`, description: 'Рациональное решение для тех, кто хочет удобно использовать угол, получить больше рабочей поверхности и сохранить порядок на кухне.' },
+      { name: 'Прямая кухня', url: `${site.url}/catalog#categories`, description: 'Подходит для вытянутой планировки, студии и квартиры, где важны лаконичность, удобная рабочая линия и визуальная лёгкость.' },
+      { name: 'Компактная кухня', url: `${site.url}/catalog#categories`, description: 'Решение для небольшой площади, где важно разместить всё необходимое без перегрузки пространства и сохранить удобство в быту.' },
+      { name: 'Кухня в хрущевке', url: `${site.url}/catalog#categories`, description: 'Продуманная планировка для маленькой кухни в хрущевке: компактные модули, светлые фасады и удобное хранение.' },
+      { name: 'Кухня в маленькой квартире', url: `${site.url}/catalog#categories`, description: 'Подходит для небольших помещений, где каждый сантиметр должен работать на хранение, комфорт и аккуратный внешний вид.' },
+      { name: 'Кухня в частном доме', url: `${site.url}/catalog#categories`, description: 'Удобный формат для просторных помещений, где можно продумать большую рабочую зону, дополнительное хранение и выразительный стиль.' },
+      { name: 'Кухня-гостиная', url: `${site.url}/catalog#categories`, description: 'Решение для открытой планировки, где важно объединить рабочую зону с интерьером гостиной и сохранить визуальный баланс.' },
+      { name: 'Узкая кухня', url: `${site.url}/catalog#categories`, description: 'Практичный формат для вытянутых помещений, где особенно важны прямая планировка, компактная техника и удобная рабочая линия.' },
+      { name: 'Квадратная кухня', url: `${site.url}/catalog#categories`, description: 'Удобная база для угловой планировки, симметричной композиции и комфортного расположения мебели и техники.' },
+    ]}
+  />
+  <!-- ===== PAGE HERO ===== -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Хлебные крошки">
+        <a href="/">Главная</a>
+        <span>›</span>
+        <span>Каталог</span>
+      </nav>
+
+     
+      <h1>Каталог решений и планировок</h1>
+      <p>
+        Здесь собраны популярные форматы кухонь для квартиры, дома и компактных помещений. Можно
+        выбрать угловую кухню, прямую кухню, кухню для маленькой квартиры, кухню в хрущевке или
+        решение под конкретные размеры.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== CATALOG CATEGORIES ===== -->
+  <section class="section" id="categories">
+    <div class="container">
+      <div class="cards cards--3">
+        <article
+          class="card card--clickable open-modal"
+          data-modal="modal-angle"
+          data-has-media="true"
+          tabindex="0"
+          role="button"
+          aria-label="Открыть описание угловой кухни"
+        >
+          <div class="card__image card__image--angle" style="background-image: url('/images/угловые/угловые-темная.webp')"></div>
+          <div class="card__body">
+            <h3>Угловая кухня</h3>
+            <p>
+              Рациональное решение для тех, кто хочет удобно использовать угол, получить больше
+              рабочей поверхности и сохранить порядок на кухне.
+            </p>
+            <a class="btn btn--secondary js-order" href="#contacts">Заказать</a>
+          </div>
+        </article>
+
+        <article
+          class="card card--clickable open-modal"
+          data-modal="modal-straight"
+          data-has-media="true"
+          tabindex="0"
+          role="button"
+          aria-label="Открыть описание прямой кухни"
+        >
+          <div class="card__image card__image--straight"></div>
+          <div class="card__body">
+            <h3>Прямая кухня</h3>
+            <p>
+              Подходит для вытянутой планировки, студии и квартиры, где важны лаконичность,
+              удобная рабочая линия и визуальная лёгкость.
+            </p>
+            <a class="btn btn--secondary js-order" href="#contacts">Заказать</a>
+          </div>
+        </article>
+
+        <article
+          class="card card--clickable open-modal"
+          data-modal="modal-small"
+          data-has-media="true"
+          tabindex="0"
+          role="button"
+          aria-label="Открыть описание компактной кухни"
+        >
+          <div class="card__image card__image--small" style="background-image: url('/images/компактная/компактная-темная.webp')"></div>
+          <div class="card__body">
+            <h3>Компактная кухня</h3>
+            <p>
+              Решение для небольшой площади, где важно разместить всё необходимое без перегрузки
+              пространства и сохранить удобство в быту.
+            </p>
+            <a class="btn btn--secondary js-order" href="#contacts">Заказать</a>
+          </div>
+        </article>
+
+        <article
+          class="card card--clickable open-modal"
+          data-modal="modal-khrushchevka"
+          data-has-media="true"
+          tabindex="0"
+          role="button"
+          aria-label="Открыть описание кухни в хрущевке"
+          >
+          <div class="card__image card__image--khrushchevka"></div>
+          <div class="card__body">
+            <h3>Кухня в хрущевке</h3>
+            <p>
+              Продуманная планировка для маленькой кухни в хрущевке: компактные модули, светлые
+              фасады и удобное хранение.
+            </p>
+            <button class="btn btn--secondary" type="button">Заказать</button>
+          </div>
+        </article>
+
+        <article
+          class="card card--clickable open-modal"
+          data-modal="modal-small-flat"
+          data-has-media="true"
+          tabindex="0"
+          role="button"
+          aria-label="Открыть описание кухни в маленькой квартире"
+        >
+          <div class="card__image card__image--small-flat"></div>
+          <div class="card__body">
+            <h3>Кухня в маленькой квартире</h3>
+            <p>
+              Подходит для небольших помещений, где каждый сантиметр должен работать на хранение,
+              комфорт и современный стильный вид.
+            </p>
+            <button class="btn btn--secondary" type="button">Заказать</button>
+          </div>
+        </article>
+
+        <article
+          class="card card--clickable open-modal"
+          data-modal="modal-house"
+          data-has-media="true"
+          tabindex="0"
+          role="button"
+          aria-label="Открыть описание кухни в частном доме"
+        >
+          <div class="card__image card__image--house"></div>
+          <div class="card__body">
+            <h3>Кухня в частном доме</h3>
+            <p>
+              Удобный формат для просторных помещений, где можно продумать большую рабочую зону,
+              дополнительное хранение и выразительный стиль.
+            </p>
+            <button class="btn btn--secondary" type="button">Заказать</button>
+          </div>
+        </article>
+
+        <article
+          class="card card--clickable open-modal"
+          data-modal="modal-gostinaya"
+          data-has-media="true"
+          tabindex="0"
+          role="button"
+          aria-label="Открыть описание кухни-гостиной"
+        >
+          <div class="card__image card__image--gostinaya"></div>
+          <div class="card__body">
+            <h3>Кухня-гостиная</h3>
+            <p>
+              Решение для открытой планировки, где важно объединить рабочую зону с интерьером
+              гостиной и сохранить визуальный баланс.
+            </p>
+            <button class="btn btn--secondary" type="button">Заказать</button>
+          </div>
+        </article>
+
+        <article
+          class="card card--clickable open-modal"
+          data-modal="modal-narrow"
+          data-has-media="true"
+          tabindex="0"
+          role="button"
+          aria-label="Открыть описание узкой кухни"
+        >
+          <div class="card__image card__image--narrow"></div>
+          <div class="card__body">
+            <h3>Узкая кухня</h3>
+            <p>
+              Практичный формат для вытянутых помещений, где особенно важны прямая планировка,
+              компактная техника и удобная рабочая линия.
+            </p>
+            <button class="btn btn--secondary" type="button">Заказать</button>
+          </div>
+        </article>
+
+        <article
+          class="card card--clickable open-modal"
+          data-modal="modal-square"
+          data-has-media="true"
+          tabindex="0"
+          role="button"
+          aria-label="Открыть описание квадратной кухни"
+        >
+          <div class="card__image card__image--square"></div>
+          <div class="card__body">
+            <h3>Квадратная кухня</h3>
+            <p>
+              Удобная база для угловой планировки, симметричной композиции и комфортного
+              расположения мебели и техники.
+            </p>
+            <button class="btn btn--secondary" type="button">Заказать</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== MATERIALS ===== -->
+  <section class="section section--alt" id="materials">
+    <div class="container">
+      <div class="section__head">
+        
+        <h2>Кухни по материалам</h2>
+        <p>
+          Выбор материала влияет на внешний вид, долговечность и бюджет кухни. Ниже разбираем
+          плюсы и минусы каждого варианта — от корпуса до столешницы.
+        </p>
+      </div>
+
+      <!-- Корпус -->
+      <h3 class="materials__subhead">Материалы для корпуса кухни</h3>
+      <div class="cards cards--3">
+        <article class="card card--clickable open-modal" data-modal="modal-mat-korpus-ldsp" data-has-media="true" tabindex="0" role="button" aria-label="ЛДСП — материал корпуса">
+          <div class="card__image" style="background-image: url('/images/materials/ldsp.webp')"></div>
+          <div class="card__body">
+            <h3>ЛДСП</h3>
+            <p>Низкая цена, срок 8–10 лет. Минус: рыхлая структура, боится влаги на торцах.</p>
+            <button class="btn btn--secondary" type="button">Заказать</button>
+          </div>
+        </article>
+
+        <article class="card card--clickable open-modal" data-modal="modal-mat-korpus-mdf" data-has-media="true" tabindex="0" role="button" aria-label="МДФ — материал корпуса">
+          <div class="card__image" style="background-image: url('/images/materials/mdf.webp')"></div>
+          <div class="card__body">
+            <h3>МДФ</h3>
+            <p>Высокая прочность, экологичнее ЛДСП, срок от 15 лет. Минус: деформация при нагреве.</p>
+            <button class="btn btn--secondary" type="button">Заказать</button>
+          </div>
+        </article>
+
+        <article class="card card--clickable open-modal" data-modal="modal-mat-korpus-massiv" data-has-media="true" tabindex="0" role="button" aria-label="Массив дерева — материал корпуса">
+          <div class="card__image" style="background-image: url('/images/materials/massiv-korpus.webp')"></div>
+          <div class="card__body">
+            <h3>Массив дерева</h3>
+            <p>Прочность и престиж. Минус: высокая цена, требует ухода, чувствителен к влажности.</p>
+            <button class="btn btn--secondary" type="button">Заказать</button>
+          </div>
+        </article>
+      </div>
+
+      <!-- Фасады -->
+      <h3 class="materials__subhead">Материалы для фасадов</h3>
+      <div class="cards cards--3">
+        <article class="card card--clickable open-modal" data-modal="modal-mat-fasad-pvh" data-has-media="true" tabindex="0" role="button" aria-label="ПВХ-плёнка — материал фасада">
+          <div class="card__image" style="background-image: url('/images/materials/pvh-plenka.webp')"></div>
+          <div class="card__body">
+            <h3>ПВХ-плёнка</h3>
+            <p>Недорого, широкая палитра цветов. Минус: отслаивание при перепадах температуры, боится УФ.</p>
+            <button class="btn btn--secondary" type="button">Заказать</button>
+          </div>
+        </article>
+
+        <article class="card card--clickable open-modal" data-modal="modal-mat-fasad-emal" data-has-media="true" tabindex="0" role="button" aria-label="Эмаль — материал фасада">
+          <div class="card__image" style="background-image: url('/images/materials/emal.webp')"></div>
+          <div class="card__body">
+            <h3>Эмаль</h3>
+            <p>Устойчива к пузырям, можно реставрировать сколы, сложные формы. Минус: большой вес.</p>
+            <button class="btn btn--secondary" type="button">Заказать</button>
+          </div>
+        </article>
+
+        <article class="card card--clickable open-modal" data-modal="modal-mat-fasad-akril" data-has-media="true" tabindex="0" role="button" aria-label="Акрил — материал фасада">
+          <div class="card__image" style="background-image: url('/images/materials/akril.webp')"></div>
+          <div class="card__body">
+            <h3>Акрил</h3>
+            <p>Глянцевый, устойчивый к царапинам. Минус: заметны следы от пальцев.</p>
+            <button class="btn btn--secondary" type="button">Заказать</button>
+          </div>
+        </article>
+
+        <article class="card card--clickable open-modal" data-modal="modal-mat-fasad-shpon" data-has-media="true" tabindex="0" role="button" aria-label="Шпон — материал фасада">
+          <div class="card__image" style="background-image: url('/images/materials/shpon.webp')"></div>
+          <div class="card__body">
+            <h3>Шпон</h3>
+            <p>Выглядит как массив, но дешевле. Минус: нужна защита от влаги.</p>
+            <button class="btn btn--secondary" type="button">Заказать</button>
+          </div>
+        </article>
+
+        <!-- <article class="card card--clickable open-modal" data-modal="modal-mat-fasad-massiv" data-has-media="true" tabindex="0" role="button" aria-label="Массив дерева — материал фасада">
+          <div class="card__image" style="background-image: url('/images/materials/massiv-fasad.webp')"></div>
+          <div class="card__body">
+            <h3>Массив дерева</h3>
+            <p>Долговечен, реставрируется, благородный вид. Минус: высокая цена и регулярный уход.</p>
+            <button class="btn btn--secondary" type="button">Заказать</button>
+          </div>
+        </article> -->
+
+        <article class="card card--clickable open-modal" data-modal="modal-mat-fasad-steklo" data-has-media="true" tabindex="0" role="button" aria-label="Стекло — материал фасада">
+          <div class="card__image" style="background-image: url('/images/materials/steklo.webp')"></div>
+          <div class="card__body">
+            <h3>Стекло</h3>
+            <p>Лёгкость, визуально расширяет пространство. Минус: нужна частая уборка.</p>
+            <button class="btn btn--secondary" type="button">Заказать</button>
+          </div>
+        </article>
+
+        <article class="card card--clickable open-modal" data-modal="modal-mat-fasad-metall" data-has-media="true" tabindex="0" role="button" aria-label="Металл — материал фасада">
+          <div class="card__image" style="background-image: url('/images/materials/metall.webp')"></div>
+          <div class="card__body">
+            <h3>Металл</h3>
+            <p>Гигиеничность и прочность. Минус: шум при использовании, «холодный» вид.</p>
+            <button class="btn btn--secondary" type="button">Заказать</button>
+          </div>
+        </article>
+      </div>
+
+  <!-- ===== SIZE-BASED SOLUTIONS ===== -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__head">
+       
+        <h2>Кухни по метражу</h2>
+        <p>
+          Здесь собраны сценарии под популярные размеры кухни: от минимальных помещений до более
+          свободных планировок.
+        </p>
+      </div>
+
+      <div class="cards cards--3">
+        <article class="card card--clickable open-modal" data-modal="modal-size-1" tabindex="0" role="button" aria-label="Открыть описание кухни 1 м">
+          <div class="card__body">
+            <h3>Кухня 1 м</h3>
+            <p>Сверхкомпактный формат для минимального набора модулей и самой необходимой техники.</p>
+            <button class="btn btn--secondary" type="button">Заказать</button>
+          </div>
+        </article>
+
+        <article class="card card--clickable open-modal" data-modal="modal-size-2" tabindex="0" role="button" aria-label="Открыть описание кухни 2 м">
+          <div class="card__body">
+            <h3>Кухня 2 м</h3>
+            <p>Подходит для узкой планировки, где нужно разместить хранение, рабочую зону и базовую технику.</p>
+            <button class="btn btn--secondary" type="button">Заказать</button>
+          </div>
+        </article>
+
+        <article class="card card--clickable open-modal" data-modal="modal-size-3" tabindex="0" role="button" aria-label="Открыть описание кухни 3 м">
+          <div class="card__body">
+            <h3>Кухня 3 м</h3>
+            <p>Баланс компактности и удобства: уже можно сделать более комфортную рабочую линию.</p>
+            <button class="btn btn--secondary" type="button">Заказать</button>
+          </div>
+        </article>
+
+        <article class="card card--clickable open-modal" data-modal="modal-size-4" tabindex="0" role="button" aria-label="Открыть описание кухни 4 м">
+          <div class="card__body">
+            <h3>Кухня 4 м</h3>
+            <p>Хорошая база для более свободной планировки, расширенного хранения и выразительного дизайна.</p>
+            <button class="btn btn--secondary" type="button">Заказать</button>
+          </div>
+        </article>
+
+        <article class="card card--clickable open-modal" data-modal="modal-size-5" tabindex="0" role="button" aria-label="Открыть описание кухни 5 м">
+          <div class="card__body">
+            <h3>Кухня 5 м</h3>
+            <p>Удобный формат для просторной рабочей зоны, дополнительных модулей и более сложной композиции.</p>
+            <button class="btn btn--secondary" type="button">Заказать</button>
+          </div>
+        </article>
+
+        <article class="card card--clickable open-modal" data-modal="modal-size-6" tabindex="0" role="button" aria-label="Открыть описание кухни 6 м">
+          <div class="card__body">
+            <h3>Кухня 6 м</h3>
+            <p>Просторный сценарий для тех, кто хочет больше свободы в планировке, хранении и отделке.</p>
+            <button class="btn btn--secondary" type="button">Заказать</button>
+          </div>
+        </article>
+      </div>
+
+      <div class="note">
+        <p>
+          Мы ориентируемся не только на площадь, но и на ширину, высоту, форму помещения и
+          расположение техники. Так проще подобрать кухню на заказ под конкретные размеры.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+
+      <!-- Столешницы -->
+      <h3 class="materials__subhead">Материалы для столешницы</h3>
+
+      <div class="materials__bracket">
+        <span class="materials__bracket-label">Бюджет</span>
+      </div>
+      <div class="cards cards--compact">
+        <article class="card card--clickable open-modal" data-modal="modal-mat-stol-mdf-postforming" data-has-media="false" tabindex="0" role="button" aria-label="МДФ постформинг — материал столешницы">
+          <div class="card__body">
+            <h3>МДФ постформинг</h3>
+            <p>Влагостойкий, доступнее камня. Минус: стыки, срок 5–7 лет.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="materials__bracket">
+        <span class="materials__bracket-label">Средний</span>
+      </div>
+      <div class="cards cards--compact">
+        <article class="card card--clickable open-modal" data-modal="modal-mat-stol-plastik" data-has-media="false" tabindex="0" role="button" aria-label="Пластик HPL — материал столешницы">
+          <div class="card__body">
+            <h3>Пластик HPL</h3>
+            <p>Устойчив к высоким температурам, можно ставить горячее. Без швов, доступный.</p>
+          </div>
+        </article>
+
+        <article class="card card--clickable open-modal" data-modal="modal-mat-stol-isk-kamen" data-has-media="false" tabindex="0" role="button" aria-label="Искусственный камень — материал столешницы">
+          <div class="card__body">
+            <h3>Искусственный камень</h3>
+            <p>Бесшовный, выбор дизайнов. Минус: боится горячего.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="materials__bracket">
+        <span class="materials__bracket-label">Премиум</span>
+      </div>
+      <div class="cards cards--compact">
+        <article class="card card--clickable open-modal" data-modal="modal-mat-stol-nat-kamen" data-has-media="false" tabindex="0" role="button" aria-label="Натуральный камень — материал столешницы">
+          <div class="card__body">
+            <h3>Натуральный камень</h3>
+            <p>Прочность и уникальный рисунок. Минус: большой вес.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="note">
+        <p>
+          <strong>Как выбрать:</strong> бюджет — МДФ постформинг; средний — Пластик HPL, Искусственный камень;
+          премиум — Натуральный камень. Ориентируйтесь на нагрузку, влажность, стиль и уход.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== FORM ===== -->
+  <section class="section">
+    <div class="container" style="max-width:520px;margin:0 auto">
+      <GlobalForm title="Оставить заявку" />
+    </div>
+  </section>
+
+  <!-- ===== CONTACTS ===== -->
+  <section class="section contact" id="contacts">
+    <div class="container contact__centered">
+      <h2>Кухни Оренбург: адрес и консультация</h2>
+      <p>
+        Уточните адрес, получите расчёт и подберите кухню на заказ под ваш проект, бюджет и
+        размеры.
+      </p>
+
+      <div class="contact__list">
+        <p><strong>Время работы:</strong> {contacts.workTime}</p>
+      </div>
+
+      <div class="contact__cards">
+        {contacts.locations.map((loc) => (
+          <div class="contact__card">
+            <div class="contact__card-info">
+              <div class="contact__card-top">
+                <span class="contact__card-name">{loc.name}</span>
+                <a href={loc.phoneLink} class="contact__card-phone">{loc.phone}</a>
+              </div>
+              <div class="contact__card-address">{loc.cardAddress}</div>
+            </div>
+            <div class="contact__map" aria-label={loc.label}>
+{loc.mapUrl ? (
+                <iframe
+                  src={loc.mapUrl}
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title={loc.label}
+                />
+              ) : (
+                <div class="contact__map-placeholder">Карта</div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="section__head">
+        
+        <h2>Частые вопросы по каталогу</h2>
+        <p>Ниже ответы на вопросы, которые помогают выбрать подходящий вариант кухни.</p>
+      </div>
+
+      <div class="faq">
+        {catalogFaq.map((item) => (
+          <details>
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== MODALS: with media ===== -->
+  <div class="modal" id="modal-angle" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Угловая кухня">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="true">
+        <div class="modal__media modal__media--angle" style="background-image: url('/images/угловые/угловые-темная.webp')"></div>
+        <div class="modal__content">
+          <p class="eyebrow">Угловая кухня</p>
+          <h3>Удобный формат для рационального хранения</h3>
+          <div class="modal__scroll">
+            <p>
+              Угловая планировка помогает компактно разместить рабочие зоны и сделать интерьер
+              более функциональным.
+            </p>
+            <p>
+              Такой формат часто выбирают для квартиры, дома и кухни-гостиной, когда важно
+              использовать угол максимально полезно.
+            </p>
+            <p>
+              Подходит тем, кто хочет получить удобный кухонный гарнитур и аккуратный современный
+              вид.
+            </p>
+
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-straight" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Прямая кухня">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="true">
+        <div class="modal__media modal__media--straight"></div>
+        <div class="modal__content">
+          <p class="eyebrow">Прямая кухня</p>
+          <h3>Лаконичное решение для студии и вытянутой планировки</h3>
+          <div class="modal__scroll">
+            <p>
+              Прямая схема подходит для узких помещений и интерьеров, где важно сохранить воздух и
+              простоту.
+            </p>
+            <p>
+              Это хороший вариант, если нужен аккуратный, визуально лёгкий проект и удобная
+              рабочая линия.
+            </p>
+            <p>
+              Можно включить встроенную технику, компактное хранение и спокойную отделку фасадов.
+            </p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-small" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Компактная кухня">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="true">
+        <div class="modal__media modal__media--small" style="background-image: url('/images/компактная/компактная-темная.webp')"></div>
+        <div class="modal__content">
+          <p class="eyebrow">Компактная кухня</p>
+          <h3>Если помещение небольшое, важен каждый сантиметр</h3>
+          <div class="modal__scroll">
+            <p>
+              Для маленькой площади мы подбираем продуманные шкафы, удобную глубину, компактную
+              технику и функциональное хранение.
+            </p>
+            <p>
+              Это помогает сделать пространство удобным, чистым визуально и более организованным в
+              повседневной жизни.
+            </p>
+            <p>
+              Подобные решения часто ищут по запросам про кухонный гарнитур для маленькой кухни,
+              кухни на заказ недорого и кухня 1 м, кухня 2 м.
+            </p>
+            <p>Такой формат легко адаптировать под конкретные размеры и бюджет.</p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-khrushchevka" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Кухня в хрущевке">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="true">
+        <div class="modal__media modal__media--khrushchevka"></div>
+        <div class="modal__content">
+          <p class="eyebrow">Кухня в хрущевке</p>
+          <h3>Компактная планировка для маленькой площади</h3>
+          <div class="modal__scroll">
+            <p>
+              В хрущевке особенно важны светлые фасады, простая геометрия и продуманное хранение.
+              Так кухня визуально кажется легче и не перегружает помещение.
+            </p>
+            <p>
+              Для такого сценария часто выбирают угловую кухню или прямую кухню, если нужно
+              сохранить проход и разместить всё необходимое без лишнего объёма.
+            </p>
+            <p>
+              Важно заранее учесть размеры кухни, глубину модулей и расположение техники, чтобы
+              кухонный гарнитур был удобным каждый день.
+            </p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-small-flat" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Кухня в маленькой квартире">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="true">
+        <div class="modal__media modal__media--small-flat"></div>
+        <div class="modal__content">
+          <p class="eyebrow">Кухня в маленькой квартире</p>
+          <h3>Когда каждый сантиметр должен работать</h3>
+          <div class="modal__scroll">
+            <p>
+              Для маленькой квартиры важно не просто разместить мебель, а сделать пространство
+              удобным для готовки, хранения и ежедневного использования.
+            </p>
+            <p>
+              Здесь хорошо работают компактные модули, светлая палитра, встроенная техника и
+              продуманная планировка кухни.
+            </p>
+            <p>
+              Такой сценарий часто ищут вместе с запросами кухня 1 м, кухня 2 м, кухня в квартире и
+              кухонный гарнитур для маленькой кухни.
+            </p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-house" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Кухня в частном доме">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="true">
+        <div class="modal__media modal__media--house"></div>
+        <div class="modal__content">
+          <p class="eyebrow">Кухня в частном доме</p>
+          <h3>Больше свободы для планировки и дизайна</h3>
+          <div class="modal__scroll">
+            <p>
+              В частном доме чаще есть возможность сделать более просторную кухню, выделить
+              большую рабочую зону и добавить удобное хранение.
+            </p>
+            <p>
+              Такой формат хорошо подходит для семейного интерьера, кухни-гостиной и более
+              выразительных решений в современном стиле кухни.
+            </p>
+            <p>
+              Можно использовать угловую или прямую планировку, а также заложить крупную технику и
+              дополнительные модули под нужды семьи.
+            </p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-gostinaya" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Кухня-гостиная">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="true">
+        <div class="modal__media modal__media--gostinaya"></div>
+        <div class="modal__content">
+          <p class="eyebrow">Кухня-гостиная</p>
+          <h3>Открытая планировка с единым стилем</h3>
+          <div class="modal__scroll">
+            <p>
+              Кухня-гостиная требует аккуратного зонирования, чтобы рабочая зона не спорила с
+              зоной отдыха и выглядела органично.
+            </p>
+            <p>
+              В таком формате особенно важны свет, фасады, фартук, расположение обеденной группы и
+              общий интерьер кухни-гостиной.
+            </p>
+            <p>
+              Это популярное решение для квартиры и дома, где нужен современный, визуально лёгкий
+              и удобный вариант.
+            </p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-narrow" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Узкая кухня">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="true">
+        <div class="modal__media modal__media--narrow"></div>
+        <div class="modal__content">
+          <p class="eyebrow">Узкая кухня</p>
+          <h3>Решение для вытянутого помещения</h3>
+          <div class="modal__scroll">
+            <p>
+              Для узкой кухни обычно лучше всего подходит прямая схема с компактным хранением и
+              удобной рабочей линией.
+            </p>
+            <p>
+              Чтобы помещение не казалось тесным, используют светлые фасады, аккуратные ручки,
+              встроенную технику и продуманное освещение.
+            </p>
+            <p>
+              Такой формат часто выбирают, когда нужен кухонный гарнитур без визуальной перегрузки
+              и с понятной логикой размещения.
+            </p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-square" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Квадратная кухня">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="true">
+        <div class="modal__media modal__media--square"></div>
+        <div class="modal__content">
+          <p class="eyebrow">Квадратная кухня</p>
+          <h3>Комфортная база для угловой планировки</h3>
+          <div class="modal__scroll">
+            <p>
+              Квадратная кухня удобно делится на рабочие и бытовые зоны. За счёт формы помещения
+              проще сделать логичную композицию мебели.
+            </p>
+            <p>
+              Часто для такого сценария выбирают угловую кухню, потому что она помогает
+              рационально использовать площадь и сохранить удобство.
+            </p>
+            <p>
+              Это хороший вариант, если хочется совместить функциональность и современный
+              стильный вид.
+            </p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-corridor" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Кухня в коридоре">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="false">
+        <div class="modal__content">
+          <p class="eyebrow">Кухня в коридоре</p>
+          <h3>Нестандартная планировка без лишней перегрузки</h3>
+          <div class="modal__scroll">
+            <p>
+              Если кухня располагается в коридоре, особенно важно сохранить проход и не перегрузить
+              пространство лишними модулями.
+            </p>
+            <p>
+              Обычно здесь выбирают прямую кухню или компактный кухонный гарнитур, чтобы всё было
+              функционально и аккуратно.
+            </p>
+            <p>
+              Такое решение требует точного проекта и понимания размеров кухни, чтобы мебель
+              удобно вписалась в помещение.
+            </p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-entry" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Кухня в прихожей">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="false">
+        <div class="modal__content">
+          <p class="eyebrow">Кухня в прихожей</p>
+          <h3>Компактное решение для сложного помещения</h3>
+          <div class="modal__scroll">
+            <p>
+              Кухня в прихожей — это сценарий, где особенно важны точные замеры, компактная
+              глубина модулей и удобная расстановка техники.
+            </p>
+            <p>
+              Чтобы помещение осталось комфортным, обычно используют светлые фасады, спокойную
+              композицию и функциональные системы хранения.
+            </p>
+            <p>
+              Такое решение подходит для тех, кто ищет кухню на заказ под нестандартную планировку
+              и хочет использовать площадь максимально рационально.
+            </p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-size-1" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Кухня 1 м">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="false">
+        <div class="modal__content">
+          <p class="eyebrow">Кухня 1 м</p>
+          <h3>Сверхкомпактное решение</h3>
+          <div class="modal__scroll">
+            <p>
+              Такой формат подходит, если нужно разместить только самое необходимое и сохранить
+              порядок визуально.
+            </p>
+            <p>
+              Это вариант для минимального набора модулей, компактной техники и аккуратного
+              расположения предметов.
+            </p>
+            <p>
+              Часто используется как базовый сценарий для очень маленьких помещений или
+              вспомогательных зон.
+            </p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-size-2" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Кухня 2 м">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="false">
+        <div class="modal__content">
+          <p class="eyebrow">Кухня 2 м</p>
+          <h3>Удобно для узкой планировки</h3>
+          <div class="modal__scroll">
+            <p>
+              Подходит для рационального расположения шкафов, техники и рабочей поверхности.
+            </p>
+            <p>
+              Формат часто используют в квартире, студии и компактной кухне в доме, где важна
+              простая и понятная организация.
+            </p>
+            <p>
+              Можно показать примеры фартука, подсветки и встроенных решений под этот метраж.
+            </p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-size-3" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Кухня 3 м">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="false">
+        <div class="modal__content">
+          <p class="eyebrow">Кухня 3 м</p>
+          <h3>Баланс компактности и удобства</h3>
+          <div class="modal__scroll">
+            <p>
+              Позволяет создать более свободную композицию, добавить хранение и комфортную зону
+              готовки.
+            </p>
+            <p>
+              На таком метраже уже можно продумать удобную расстановку техники и визуально
+              аккуратный интерьер.
+            </p>
+            <p>
+              Это хороший вариант для кухни на заказ, когда важно совместить функциональность и
+              спокойный внешний вид.
+            </p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-size-4" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Кухня 4 м">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="false">
+        <div class="modal__content">
+          <p class="eyebrow">Кухня 4 м</p>
+          <h3>Больше свободы в планировке</h3>
+          <div class="modal__scroll">
+            <p>
+              В этом размере удобно предусмотреть широкие рабочие зоны и более выразительный
+              дизайн.
+            </p>
+            <p>
+              Это хорошая база для современного интерьера, удобного хранения и более крупной
+              бытовой техники.
+            </p>
+            <p>Такой формат легко адаптировать под квартиру, дом или кухня-гостиную.</p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-size-5" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Кухня 5 м">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="false">
+        <div class="modal__content">
+          <p class="eyebrow">Кухня 5 м</p>
+          <h3>Подходит для более свободного решения</h3>
+          <div class="modal__scroll">
+            <p>
+              Можно сделать ярче композицию, добавить больше модулей и подчеркнуть стиль кухни.
+            </p>
+            <p>
+              Удобно для проекта с расширенной функциональностью, большим объёмом хранения и
+              более заметной отделкой.
+            </p>
+            <p>
+              Хороший формат для семьи, где кухня используется каждый день и должна оставаться
+              удобной.
+            </p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-size-6" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Кухня 6 м">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="false">
+        <div class="modal__content">
+          <p class="eyebrow">Кухня 6 м</p>
+          <h3>Просторный сценарий</h3>
+          <div class="modal__scroll">
+            <p>
+              Хороший вариант для заметной рабочей зоны, вместительных шкафов и выразительного
+              интерьера.
+            </p>
+            <p>
+              Здесь можно заложить более премиальную визуальную подачу, дополнительное хранение и
+              удобное расположение техники.
+            </p>
+            <p>
+              Такой формат подходит для тех, кто хочет не просто купить кухню, а получить
+              продуманный и комфортный проект.
+            </p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODALS: материалы ===== -->
+  <!-- Корпус -->
+  <div class="modal" id="modal-mat-korpus-ldsp" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="ЛДСП — материал корпуса">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="true">
+        <div class="modal__media" style="background-image: url('/images/materials/ldsp.webp')"></div>
+        <div class="modal__content">
+          <p class="eyebrow">ЛДСП — корпус</p>
+          <h3>Бюджетная основа под гарнитур</h3>
+          <div class="modal__scroll">
+            <p>ЛДСП — самый доступный материал для корпуса. Плита состоит из древесной стружки, скреплённой смолами, и покрыта ламинирующим слоем. При нормальной влажности служит 8–10 лет без нареканий.</p>
+            <p>Главное ограничение — рыхлая внутренняя структура: если разобрать и заново собрать шкаф, крепёж будет держаться хуже. Открытые торцы без ламината впитывают влагу и разбухают, поэтому важна качественная обработка кромки.</p>
+            <p>ЛДСП оправдан, когда нужна кухня недорого и нет жёстких требований по сроку службы. Для влажных помещений или тяжёлых столешниц лучше рассмотреть МДФ.</p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-mat-korpus-mdf" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="МДФ — материал корпуса">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="true">
+        <div class="modal__media" style="background-image: url('/images/materials/mdf.webp')"></div>
+        <div class="modal__content">
+          <p class="eyebrow">МДФ — корпус</p>
+          <h3>Прочная и плотная основа</h3>
+          <div class="modal__scroll">
+            <p>МДФ изготавливается из мелкодисперсной древесной фракции под высоким давлением. Плита получается плотной, однородной и значительно прочнее ЛДСП — крепёж держится надёжно даже при повторной сборке.</p>
+            <p>Материал не содержит формальдегидных смол, поэтому считается более экологичным. Срок службы корпуса из МДФ — от 15 лет при правильной эксплуатации.</p>
+            <p>Слабое место — чувствительность к нагреву: рядом с духовым шкафом или радиатором плита может деформироваться. Также МДФ уступает металлу и камню по пожароустойчивости. В целом это оптимальный выбор для среднего и выше среднего сегмента.</p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-mat-korpus-massiv" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Массив дерева — материал корпуса">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="true">
+        <div class="modal__media" style="background-image: url('/images/materials/massiv-korpus.webp')"></div>
+        <div class="modal__content">
+          <p class="eyebrow">Массив — корпус</p>
+          <h3>Премиальная основа на десятилетия</h3>
+          <div class="modal__scroll">
+            <p>Массив дерева — самый прочный и статусный вариант для корпуса. Он выдерживает большие нагрузки и позволяет реализовать индивидуальный дизайн с уникальной текстурой.</p>
+            <p>Однако за престиж приходится платить: цена массива в разы выше ЛДСП и МДФ. Кроме того, дерево требует регулярного ухода — обработки лаком или маслом, иначе оно теряет вид. Перепады влажности могут привести к растрескиванию, поэтому в помещениях с нестабильным микроклиматом массив используют с осторожностью.</p>
+            <p>Чаще массив применяют для фасадов, а корпус делают из МДФ — это даёт баланс цены, веса и внешнего вида.</p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Фасады -->
+  <div class="modal" id="modal-mat-fasad-pvh" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="ПВХ-плёнка — материал фасада">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="true">
+        <div class="modal__media" style="background-image: url('/images/materials/pvh-plenka.webp')"></div>
+        <div class="modal__content">
+          <p class="eyebrow">ПВХ-плёнка — фасад</p>
+          <h3>Доступная палитра и лёгкий вес</h3>
+          <div class="modal__scroll">
+            <p>Полимерная плёнка ПВХ наносится на основу из МДФ или ДСП. Это самое бюджетное покрытие для фасадов с сотнями оттенков и фактур — от матовых до глянцевых, от однотонных до имитации дерева.</p>
+            <p>Лёгкий вес снижает нагрузку на петли и корпус, что продлевает срок службы фурнитуры. Однако при резких перепадах температуры плёнка может отслаиваться от основы. Также она выцветает под прямыми солнечными лучами и боится высокой влажности — например, над посудомоечной машиной без дополнительной защиты.</p>
+            <p>ПВХ — хороший выбор для арендных квартир, дач и проектов с ограниченным бюджетом, где не требуется срок службы более 7–10 лет.</p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-mat-fasad-emal" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Эмаль — материал фасада">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="true">
+        <div class="modal__media" style="background-image: url('/images/materials/emal.webp')"></div>
+        <div class="modal__content">
+          <p class="eyebrow">Эмаль — фасад</p>
+          <h3>Идеально гладкая поверхность и ремонтопригодность</h3>
+          <div class="modal__scroll">
+            <p>Эмаль — это многослойное лакокрасочное покрытие по МДФ. Технология позволяет создавать фасады любой формы, включая радиусные (гнутые), что недоступно для ПВХ-плёнки.</p>
+            <p>Покрытие устойчиво к пузырям и отслоениям, не боится влаги. При появлении скола его можно локально зашлифовать и подкрасить — в отличие от плёнки, которую при повреждении приходится менять целиком.</p>
+            <p>Главный минус — вес: окрашенный МДФ тяжелее плёночного, поэтому петли и доводчики должны быть усиленными. В среднем и высоком сегменте эмаль — один из самых востребованных вариантов благодаря балансу эстетики и практичности.</p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-mat-fasad-akril" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Акрил — материал фасада">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="true">
+        <div class="modal__media" style="background-image: url('/images/materials/akril.webp')"></div>
+        <div class="modal__content">
+          <p class="eyebrow">Акрил — фасад</p>
+          <h3>Глянцевый блеск и устойчивость к царапинам</h3>
+          <div class="modal__scroll">
+            <p>Акриловое покрытие наносится на МДФ и даёт глубокий глянцевый блеск, который визуально расширяет пространство. Материал устойчив к мелким царапинам и сохраняет насыщенность цвета даже через годы эксплуатации.</p>
+            <p>Основной недостаток — маркость: на глянце хорошо заметны отпечатки пальцев, разводы и пыль. Если в доме есть маленькие дети или вы не готовы к частой уборке, стоит выбрать матовый акрил или другое покрытие.</p>
+            <p>Акриловые фасады хорошо вписываются в современный стиль и хай-тек, особенно в сочетании со стеклом и металлом.</p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-mat-fasad-shpon" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Шпон — материал фасада">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="true">
+        <div class="modal__media" style="background-image: url('/images/materials/shpon.webp')"></div>
+        <div class="modal__content">
+          <p class="eyebrow">Шпон — фасад</p>
+          <h3>Натуральная текстура по разумной цене</h3>
+          <div class="modal__scroll">
+            <p>Шпон — это тонкий срез натурального дерева, наклеенный на основу из МДФ или ДСП. Внешне он неотличим от массива, но стоит заметно дешевле и весит меньше.</p>
+            <p>Материал сохраняет природный рисунок и тепло дерева, хорошо сочетается с классическими и эко-интерьерами. Главное требование — защита от влаги: шпон нужно покрывать лаком или маслом, иначе он разбухает и отслаивается.</p>
+            <p>Шпонированные фасады — компромисс между ценой массива и эстетикой натурального дерева. Срок службы при правильном уходе — 12–15 лет.</p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="modal" id="modal-mat-fasad-massiv" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Массив дерева — материал фасада">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="true">
+        <div class="modal__media" style="background-image: url('/images/materials/massiv-fasad.webp')"></div>
+        <div class="modal__content">
+          <p class="eyebrow">Массив — фасад</p>
+          <h3>Статус, долговечность и реставрация</h3>
+          <div class="modal__scroll">
+            <p>Фасады из массива дерева — премиальный выбор с максимальным сроком службы. Дерево можно циклевать, перекрашивать и реставрировать, продлевая жизнь кухне на десятилетия.</p>
+            <p>Благородная текстура и тактильное тепло создают ощущение дорогого интерьера, которое невозможно повторить плёнкой или пластиком. Однако цена массива в 2–4 раза выше МДФ с покрытием, а для сохранения вида требуется регулярная обработка маслом или воском.</p>
+            <p>Массив оправдан в классических интерьерах, загородных домах и проектах, где важны статус и индивидуальность.</p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="modal" id="modal-mat-fasad-steklo" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Стекло — материал фасада">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="true">
+        <div class="modal__media" style="background-image: url('/images/materials/steklo.webp')"></div>
+        <div class="modal__content">
+          <p class="eyebrow">Стекло — фасад</p>
+          <h3>Визуальная лёгкость и современный стиль</h3>
+          <div class="modal__scroll">
+            <p>Стеклянные фасады — один из главных приёмов для визуального расширения пространства. Закалённое стекло прочное, безопасное и доступно в десятках оттенков: от прозрачного до матового и тонированного.</p>
+            <p>Материал не боится влаги, не выцветает и легко моется. Однако на стекле заметны любые следы — отпечатки, капли воды, пыль. Если в семье есть дети, приготовьтесь к частой уборке.</p>
+            <p>Стекло хорошо комбинируется с алюминиевой рамкой, подсветкой и металлическими элементами в стилях хай-тек и минимализм.</p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-mat-fasad-metall" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Металл — материал фасада">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="true">
+        <div class="modal__media" style="background-image: url('/images/materials/metall.webp')"></div>
+        <div class="modal__content">
+          <p class="eyebrow">Металл — фасад</p>
+          <h3>Гигиеничный и сверхпрочный</h3>
+          <div class="modal__scroll">
+            <p>Фасады из нержавеющей стали — выбор для тех, кто ценит гигиеничность и индустриальную эстетику. Металл не впитывает запахи, не боится влаги и выдерживает серьёзные механические нагрузки.</p>
+            <p>С другой стороны, стальные фасады создают шум при закрывании, а поверхность может казаться «холодной» визуально и тактильно. Царапины на матовой стали менее заметны, чем на глянце, но со временем появляются.</p>
+            <p>Металл органично смотрится в стилях лофт и хай-тек, особенно в сочетании со стеклом и бетонными текстурами.</p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Столешницы -->
+  <div class="modal" id="modal-mat-stol-plastik" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Пластик HPL — материал столешницы">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="false">
+        <div class="modal__content">
+          <p class="eyebrow">Пластик HPL — столешница</p>
+          <h3>Устойчив к высоким температурам</h3>
+          <div class="modal__scroll">
+            <p>Пластиковая столешница HPL на основе МДФ или ЛДСП — доступное и практичное решение. Технология постформинга позволяет сделать поверхность бесшовной, что упрощает уход и предотвращает скопление грязи. Срок службы — от 10 лет.</p>
+            <p>Устойчив к высоким температурам — можно ставить горячую посуду прямо с плиты, не боясь повредить поверхность.</p>
+            <p>Пластик HPL — хороший выбор для тех, кто хочет практичную бесшовную столешницу по доступной цене без потери внешнего вида.</p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-mat-stol-mdf-postforming" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="МДФ постформинг — материал столешницы">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="false">
+        <div class="modal__content">
+          <p class="eyebrow">МДФ постформинг — столешница</p>
+          <h3>Доступная влагостойкая поверхность</h3>
+          <div class="modal__scroll">
+            <p>Столешница из МДФ с постформингом — золотая середина между бюджетным пластиком и натуральным камнем. Влагостойкая плита с пластиковым покрытием не боится пролитой воды, выдерживает умеренные нагрузки и представлена в широкой палитре цветов и текстур — от глянца до имитации дерева.</p>
+            <p>Главный недостаток — стыки: при длине более 3–4 метров появляется шов, который со временем может стать заметным. Срок службы 5–7 лет при активной эксплуатации, после чего возможно истирание покрытия в зоне готовки. Резать на поверхности без доски не рекомендуется.</p>
+            <p>Постформинг оправдан в кухнях среднего сегмента, где нужен баланс цены и качества. При бережном использовании столешница сохраняет вид до замены гарнитура.</p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-mat-stol-isk-kamen" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Искусственный камень — материал столешницы">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="false">
+        <div class="modal__content">
+          <p class="eyebrow">Искусственный камень — столешница</p>
+          <h3>Бесшовная эстетика и дизайнерская свобода</h3>
+          <div class="modal__scroll">
+            <p>Акриловый искусственный камень — один из самых популярных материалов для столешниц среднего и высокого сегмента. Он позволяет создавать поверхности любой формы без единого шва, включая интегрированные мойки и закруглённые края.</p>
+            <p>Материал даёт объёмный, насыщенный цвет и огромный выбор дизайнов — от имитации мрамора до бетона. Однако он чувствителен к высоким температурам: горячую сковороду нужно ставить на подставку. Абразивные чистящие средства оставляют микроповреждения, поэтому уход должен быть деликатным.</p>
+            <p>Искусственный камень — оптимальный компромисс между ценой, дизайном и практичностью для современных кухонь.</p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-mat-stol-nat-kamen" aria-hidden="true">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Натуральный камень — материал столешницы">
+      <button class="modal__close close-modal" type="button" aria-label="Закрыть">×</button>
+      <div class="modal__grid" data-has-media="false">
+        <div class="modal__content">
+          <p class="eyebrow">Натуральный камень — столешница</p>
+          <h3>Вечная классика с природным рисунком</h3>
+          <div class="modal__scroll">
+            <p>Гранит и мрамор — материалы с максимальным сроком службы. Гранит исключительно твёрдый, термостойкий и не царапается. Мрамор ценится за уникальный рисунок, но мягче гранита и впитывает красители — от вина и кофе могут остаться несмываемые пятна.</p>
+            <p>Оба материала имеют значительный вес: для их установки нужен усиленный корпус (минимум МДФ, лучше массив). Цена натурального камня в 2–5 раз выше искусственного, особенно с учётом доставки и монтажа.</p>
+            <p>Натуральный камень выбирают для премиальных проектов, где важны статус, уникальность и срок службы более 20 лет.</p>
+          </div>
+          <a class="btn btn--primary js-lead-to-form" href="#contacts">Оставить заявку</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</BaseLayout>

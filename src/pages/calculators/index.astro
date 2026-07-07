@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Калькуляторы кухонь и ремонта';
+const description = 'Хаб калькуляторов: быстрый доступ к инструментам для расчёта кухни и связанных параметров.';
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Калькуляторы</p>
+      <h1>Калькулятор хаб</h1>
+      <p>
+        Здесь собраны полезные калькуляторы для выбора кухни. Сейчас доступен калькулятор кухни с
+        быстрым расчётом ориентировочной стоимости.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cards cards--3">
+        <article class="card">
+          <div class="card__body">
+            <p class="eyebrow">Доступно сейчас</p>
+            <h2>Калькулятор кухни</h2>
+            <p>
+              Подберите ориентировочную стоимость кухни по размеру помещения, планировке, фасадам,
+              столешнице и комплектации.
+            </p>
+            <a class="btn btn--primary" href="/calculators/kitchen">Открыть калькулятор</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="note">
+        <p>
+          Хаб будет пополняться новыми расчётами без изменения основной стилистики сайта.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

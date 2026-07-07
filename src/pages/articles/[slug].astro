@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Schema from '../../components/Schema.astro';
+import { site } from '../../data/site';
+
+import { getCollection, render } from 'astro:content';
+// =========================================================
+// STATIC PATHS
+// =========================================================
+// Берём все статьи из коллекции articles и создаём для них страницы.
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  return articles.map((article) => ({
+    params: { slug: article.id },
+    props: { article },
+  }));
+}
+const { article } = Astro.props;
+const { Content } = await render(article);
+
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  tags = [],
+  image,
+} = article.data;
+
+const pageTitle = `${title} — Блог о кухнях на заказ`;
+const pageDescription = description;
+
+const formattedDate = pubDate.toLocaleDateString('ru-RU', {
+  day: '2-digit',
+  month: 'long',
+  year: 'numeric',
+});
+
+const formattedUpdatedDate = updatedDate
+  ? updatedDate.toLocaleDateString('ru-RU', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    })
+  : null;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <Schema
+    type="BreadcrumbList"
+    breadcrumbs={[
+      { name: 'Главная', item: site.url },
+      { name: 'Блог', item: `${site.url}/blog` },
+      { name: title },
+    ]}
+  />
+  <Schema
+    type="Article"
+    articleTitle={title}
+    articleDescription={description}
+    articleDate={pubDate.toISOString()}
+    articleUrl={`${site.url}/articles/${article.id}`}
+    articleUpdated={updatedDate?.toISOString()}
+    articleImage={image ? `${site.url}${image}` : undefined}
+  />
+
+  <!-- ===== ARTICLE HERO ===== -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Хлебные крошки">
+        <a href="/">Главная</a>
+        <span>›</span>
+        <a href="/blog">Блог</a>
+        <span>›</span>
+        <span>{title}</span>
+      </nav>
+
+      <p class="eyebrow">Статья</p>
+      <h1>{title}</h1>
+      <p class="article__intro">{description}</p>
+
+      <p class="blog-card__meta">
+        {formattedDate}
+        {formattedUpdatedDate ? ` · Обновлено: ${formattedUpdatedDate}` : ''}
+      </p>
+
+      {tags.length > 0 && (
+        <ul class="hero__badges" aria-label="Теги статьи">
+          {tags.map((tag) => (
+            <li>{tag}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+
+  <!-- ===== ARTICLE COVER ===== -->
+  {image && (
+    <section class="section">
+      <div class="container">
+        <img src={image} alt={title} class="article__cover" />
+      </div>
+    </section>
+  )}
+
+  <!-- ===== ARTICLE CONTENT ===== -->
+  <article class="section">
+    <div class="container">
+      <div class="article">
+        <div class="article__content">
+          <Content />
+        </div>
+      </div>
+
+      <!-- ===== RELATED CTA ===== -->
+      <section class="related">
+        <h2>Хотите подобрать кухню под свой размер?</h2>
+        <p>
+          Посмотрите каталог или оставьте заявку — мы подберём решение под ваш бюджет, размеры и стиль.
+        </p>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="/catalog">Перейти в каталог</a>
+          <a class="btn btn--secondary" href="/#contacts">Оставить заявку</a>
+        </div>
+      </section>
+    </div>
+  </article>
+</BaseLayout>

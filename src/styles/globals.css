@@ -1,0 +1,56 @@
+@import './variables.css';
+
+/*
+  Giveny (public/fonts/Giveny-Regular.ttf) не поддерживает кириллицу, поэтому основной
+  шрифт сайта — Playfair Display. @font-face оставлен на случай точечного использования
+  Giveny (например, для логотипа или цифр), сейчас нигде не подключён и не грузится.
+*/
+@font-face {
+  font-family: 'Giveny';
+  src: url('/fonts/Giveny-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 20px;
+}
