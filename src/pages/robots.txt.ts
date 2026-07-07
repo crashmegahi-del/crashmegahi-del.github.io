@@ -1,13 +1,9 @@
 import type { APIRoute } from 'astro';
 
-export const GET: APIRoute = async ({ site }) => {
-  const baseUrl = site?.toString() ?? 'https://kuhni-v-orenburge.ru';
-  const sitemapUrl = `${baseUrl.replace(/\/$/, '')}/sitemap.xml`;
-
+export const GET: APIRoute = async () => {
+  // Полный запрет индексации сайта всеми поисковыми роботами.
   const body = `User-agent: *
-Allow: /
-
-Sitemap: ${sitemapUrl}
+Disallow: /
 `;
 
   return new Response(body, {
